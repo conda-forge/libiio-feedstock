@@ -34,6 +34,7 @@ requirements:
     - libusb >=1
     - libxml2
     - python
+    - setuptools
     # these are pulled in by libxml2 and make it into the link, so add explicitly
     - icu  # [osx]
     - libiconv  # [osx]
