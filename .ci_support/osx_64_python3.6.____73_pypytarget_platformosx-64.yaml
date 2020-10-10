@@ -17,8 +17,6 @@ libxml2:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 pin_run_as_build:
-  icu:
-    max_pin: x
   libiconv:
     max_pin: x.x
   libxml2:

@@ -16,7 +16,7 @@ source:
     sha256: 482082f678aba30edd3b5008b72e1c6c984bc8fb4c181abf0f8880e893169ff0  # [win]
 
 build:
-  number: 0
+  number: 1
   run_exports:
     - {{ pin_subpackage('libiio', max_pin='x.x') }}
 
