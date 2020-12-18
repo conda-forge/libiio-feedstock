@@ -16,7 +16,7 @@ source:
     sha256: 482082f678aba30edd3b5008b72e1c6c984bc8fb4c181abf0f8880e893169ff0  # [win]
 
 build:
-  number: 2
+  number: 3
   run_exports:
     - {{ pin_subpackage('libiio', max_pin='x.x') }}
 
@@ -35,11 +35,6 @@ requirements:
     - libxml2
     - python
     - setuptools
-    # these are pulled in by libxml2 and make it into the link, so add explicitly
-    - icu  # [osx]
-    - libiconv  # [osx]
-    - xz  # [osx]
-    - zlib  # [osx]
   run:
     - python
   run_constrained:
