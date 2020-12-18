@@ -1,38 +1,24 @@
-MACOSX_DEPLOYMENT_TARGET:
-- '10.11'
 c_compiler:
-- clang
+- gcc
 c_compiler_version:
-- '10'
+- '9'
+cdt_name:
+- cos6
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
-icu:
-- '67'
-libiconv:
-- '1.16'
+docker_image:
+- quay.io/condaforge/linux-anvil-comp7
 libxml2:
 - '2.9'
-macos_machine:
-- x86_64-apple-darwin13.4.0
 pin_run_as_build:
-  libiconv:
-    max_pin: x.x
   libxml2:
     max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x
-  xz:
-    max_pin: x.x
-  zlib:
-    max_pin: x.x
 python:
 - 3.6.* *_73_pypy
 target_platform:
-- osx-64
-xz:
-- '5.2'
-zlib:
-- '1.2'
+- linux-64
