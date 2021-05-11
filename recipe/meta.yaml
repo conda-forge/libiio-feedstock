@@ -10,6 +10,7 @@ source:
     sha256: 03d13165cbeb83b036743cbd9a10e336c728da162714f39d13250a3d94305cac
     patches:
       - 0001-Make-Framework-creation-optional-through-OSX_FRAMEWO.patch  # [osx]
+      - 0002-Python-Do-not-verify-whether-libiio-is-installed-when-cross-compiling.patch
   # wingetopt submodule is not included in above sources, download by git hash used
   - url: https://github.com/alex85k/wingetopt/archive/76a5d1ab15f684d4c9479a32624d65b3bd1a726b.tar.gz  # [win]
     folder: deps/wingetopt  # [win]

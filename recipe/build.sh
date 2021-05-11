@@ -48,5 +48,4 @@ fi
 
 cmake ${CMAKE_ARGS} .. "${cmake_config_args[@]}"
 cmake --build . --config Release -- -j${CPU_COUNT}
-cat bindings/python/setup.py
 cmake --build . --config Release --target install
