@@ -12,19 +12,13 @@ cmake -G "Ninja" ^
     -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
     -DPython_EXECUTABLE:PATH="%PYTHON%" ^
     -DWITH_DOC=OFF ^
+    -DVERSION=%PKG_VERSION% ^
     ..
 if errorlevel 1 exit 1
 
 :: build
-cmake --build . --config Release -- -j%CPU_COUNT%
+cmake --build . --config Release
 if errorlevel 1 exit 1
 
-:: install
-cmake --build . --config Release --target install
-if errorlevel 1 exit 1
-
-:: move Python package to the right place.
-cd %LIBRARY_PREFIX%\Lib\site-packages
-move libiio*.egg-info %SP_DIR%
-move iio.py %SP_DIR%
-if errorlevel 1 exit 1
+:: don't install with CMake, rather install with pip to avoid .egg-info dir
+%PYTHON% -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv

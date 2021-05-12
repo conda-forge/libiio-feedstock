@@ -11,8 +11,11 @@ cmake_config_args=(
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DPython_EXECUTABLE=$PYTHON
     -DWITH_DOC=OFF
+    -DVERSION=$PKG_VERSION
 )
 
-cmake .. "${cmake_config_args[@]}"
-cmake --build . --config Release -- -j${CPU_COUNT}
-cmake --build . --config Release --target install
+cmake ${CMAKE_ARGS} .. "${cmake_config_args[@]}"
+cmake --build . --config Release
+
+# don't install with CMake, rather install with pip to avoid .egg-info dir
+$PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv

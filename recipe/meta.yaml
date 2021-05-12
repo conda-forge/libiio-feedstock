@@ -81,6 +81,7 @@ outputs:
         - cross-python_{{ target_platform }}  # [build_platform != target_platform]
       host:
         - libiio-c
+        - pip
         - python >=3.6
         - setuptools
       run:
