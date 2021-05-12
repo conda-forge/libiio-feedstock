@@ -18,4 +18,4 @@ cmake ${CMAKE_ARGS} .. "${cmake_config_args[@]}"
 cmake --build . --config Release
 
 # don't install with CMake, rather install with pip to avoid .egg-info dir
-$PYTHON -m pip install . --no-deps --ignore-installed --no-cache-dir -vvv
+$PYTHON -m pip install . -vv
