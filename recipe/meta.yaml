@@ -83,7 +83,7 @@ outputs:
         - python >=3.6
         - setuptools
       run:
-        - libiio-c {{ version }} *_{{ build_num }}
+        - {{ pin_subpackage('libiio-c', max_pin='x.x') }}
         - python
     test:
       imports:
