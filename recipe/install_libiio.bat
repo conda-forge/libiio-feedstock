@@ -20,8 +20,7 @@ cmake -G "Ninja" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCSHARP_BINDINGS=OFF ^
     -DENABLE_PACKAGING=OFF ^
-    -DPYTHON_BINDINGS=ON ^
-    -DPython_EXECUTABLE:PATH="%PYTHON%" ^
+    -DPYTHON_BINDINGS=OFF ^
     -DWITH_DOC=OFF ^
     -DWITH_EXAMPLES=OFF ^
     -DWITH_MAN=OFF ^
@@ -40,8 +39,3 @@ if errorlevel 1 exit 1
 :: install
 cmake --build . --config Release --target install
 if errorlevel 1 exit 1
-
-:: move Python package to the right place.
-cd %LIBRARY_PREFIX%\Lib\site-packages
-move libiio*.egg-info %SP_DIR%
-move iio.py %SP_DIR%

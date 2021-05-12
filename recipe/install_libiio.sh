@@ -15,8 +15,7 @@ cmake_config_args=(
     -DCMAKE_INSTALL_SBINDIR=bin
     -DCSHARP_BINDINGS=OFF
     -DENABLE_PACKAGING=OFF
-    -DPYTHON_BINDINGS=ON
-    -DPython_EXECUTABLE=$PYTHON
+    -DPYTHON_BINDINGS=OFF
     -DWITH_DOC=OFF
     -DWITH_EXAMPLES=OFF
     -DWITH_MAN=OFF
@@ -46,6 +45,6 @@ else
     )
 fi
 
-cmake .. "${cmake_config_args[@]}"
+cmake ${CMAKE_ARGS} .. "${cmake_config_args[@]}"
 cmake --build . --config Release -- -j${CPU_COUNT}
 cmake --build . --config Release --target install
