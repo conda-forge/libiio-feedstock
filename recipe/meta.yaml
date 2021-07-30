@@ -1,5 +1,5 @@
 {% set version = "0.22" %}
-{% set build_num = "6" %}
+{% set build = "0" %}
 
 package:
   name: libiio-split
@@ -16,7 +16,7 @@ source:
     sha256: 482082f678aba30edd3b5008b72e1c6c984bc8fb4c181abf0f8880e893169ff0  # [win]
 
 build:
-  number: {{ build_num }}
+  number: {{ build }}
 
 outputs:
   - name: libiio-c
@@ -68,7 +68,7 @@ outputs:
     script: install_pylibiio.bat  # [win]
     script: install_pylibiio.sh  # [not win]
     build:
-      string: py_{{ build_num }}
+      string: py_{{ build }}
       noarch: python
     requirements:
       build:
