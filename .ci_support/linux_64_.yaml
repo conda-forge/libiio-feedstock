@@ -29,3 +29,5 @@ target_platform:
 zip_keys:
 - - cdt_name
   - docker_image
+zstd:
+- '1.5'
