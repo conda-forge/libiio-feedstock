@@ -24,7 +24,7 @@ outputs:
     script: install_libiio.sh  # [not win]
     build:
       run_exports:
-        - {{ pin_subpackage('libiio-c', max_pin='x.x') }}
+        - {{ pin_subpackage('libiio-c', max_pin='x') }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -84,7 +84,7 @@ outputs:
         - python >=3.6
         - setuptools
       run:
-        - {{ pin_subpackage('libiio-c', max_pin='x.x') }}
+        - {{ pin_subpackage('libiio-c', max_pin='x') }}
         - python
     test:
       imports:
@@ -93,7 +93,7 @@ outputs:
   - name: libiio
     build:
       run_exports:
-        - {{ pin_subpackage('libiio-c', max_pin='x.x') }}
+        - {{ pin_subpackage('libiio-c', max_pin='x') }}
     requirements:
       run:
         - {{ pin_subpackage('libiio-c', exact=True) }}
