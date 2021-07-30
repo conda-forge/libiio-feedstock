@@ -35,6 +35,8 @@ if [[ $target_platform == linux* ]] ; then
         -DUDEV_RULES_INSTALL_DIR=$PREFIX/lib/udev/rules.d
         -DWITH_AIO=ON
         -DWITH_IIOD=ON
+        # IIOD_USBD needs at least kernel 3.18
+        -DWITH_IIOD_USBD=OFF
         -DWITH_LOCAL_BACKEND=ON
         -DWITH_LOCAL_CONFIG=OFF
         -DWITH_SYSTEMD=OFF
