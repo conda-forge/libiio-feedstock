@@ -20,6 +20,7 @@ cmake -G "Ninja" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DBUILD_SHARED_LIBS=ON ^
     -DCSHARP_BINDINGS=OFF ^
+    -DENABLE_IPV6=OFF ^
     -DENABLE_PACKAGING=OFF ^
     -DHAVE_DNS_SD=OFF ^
     -DNO_THREADS=OFF ^
@@ -32,6 +33,7 @@ cmake -G "Ninja" ^
     -DWITH_TESTS=ON ^
     -DWITH_USB_BACKEND=ON ^
     -DWITH_XML_BACKEND=ON ^
+    -DWITH_ZSTD=ON ^
     ..
 if errorlevel 1 exit 1
 

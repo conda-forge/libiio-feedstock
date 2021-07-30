@@ -15,6 +15,7 @@ cmake_config_args=(
     -DCMAKE_INSTALL_SBINDIR=bin
     -DBUILD_SHARED_LIBS=ON
     -DCSHARP_BINDINGS=OFF
+    -DENABLE_IPV6=ON
     -DENABLE_PACKAGING=OFF
     -DNO_THREADS=OFF
     -DPYTHON_BINDINGS=OFF
@@ -26,6 +27,7 @@ cmake_config_args=(
     -DWITH_TESTS=ON
     -DWITH_USB_BACKEND=ON
     -DWITH_XML_BACKEND=ON
+    -DWITH_ZSTD=ON
 )
 
 if [[ $target_platform == linux* ]] ; then
