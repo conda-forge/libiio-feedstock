@@ -13,8 +13,11 @@ cmake_config_args=(
     -DCMAKE_INSTALL_PREFIX=$PREFIX
     -DCMAKE_INSTALL_LIBDIR=lib
     -DCMAKE_INSTALL_SBINDIR=bin
+    -DBUILD_SHARED_LIBS=ON
     -DCSHARP_BINDINGS=OFF
+    -DENABLE_IPV6=ON
     -DENABLE_PACKAGING=OFF
+    -DNO_THREADS=OFF
     -DPYTHON_BINDINGS=OFF
     -DWITH_DOC=OFF
     -DWITH_EXAMPLES=OFF
@@ -24,13 +27,18 @@ cmake_config_args=(
     -DWITH_TESTS=ON
     -DWITH_USB_BACKEND=ON
     -DWITH_XML_BACKEND=ON
+    -DWITH_ZSTD=ON
 )
 
 if [[ $target_platform == linux* ]] ; then
     cmake_config_args+=(
+        -DHAVE_DNS_SD=OFF
         -DINSTALL_UDEV_RULE=ON
         -DUDEV_RULES_INSTALL_DIR=$PREFIX/lib/udev/rules.d
+        -DWITH_AIO=ON
         -DWITH_IIOD=ON
+        # IIOD_USBD needs at least kernel 3.18
+        -DWITH_IIOD_USBD=OFF
         -DWITH_LOCAL_BACKEND=ON
         -DWITH_LOCAL_CONFIG=OFF
         -DWITH_SYSTEMD=OFF
@@ -39,6 +47,7 @@ if [[ $target_platform == linux* ]] ; then
     )
 else
     cmake_config_args+=(
+        -DHAVE_DNS_SD=ON
         -DOSX_PACKAGE=OFF
         -DWITH_IIOD=OFF
         -DWITH_LOCAL_BACKEND=OFF
