@@ -1,4 +1,4 @@
-{% set version = "0.21" %}
+{% set version = "0.22" %}
 {% set build_num = "6" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/analogdevicesinc/libiio/archive/v{{ version }}.tar.gz
-    sha256: 03d13165cbeb83b036743cbd9a10e336c728da162714f39d13250a3d94305cac
+    sha256: f6d7baa4896c062206dac775627d91d395a05a7b8dbcc9f89d61a1264caf0d98
     patches:
       - 0001-Make-Framework-creation-optional-through-OSX_FRAMEWO.patch  # [osx]
       - 0002-Python-Do-not-verify-whether-libiio-is-installed-when-cross-compiling.patch
