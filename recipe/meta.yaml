@@ -1,4 +1,4 @@
-{% set version = "0.23" %}
+{% set version = "0.24" %}
 {% set build = 0 %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   - url: https://github.com/analogdevicesinc/libiio/archive/v{{ version }}.tar.gz
-    sha256: df1577740ea93dca732e7d7c04786600cb083117901dee793f3d38980754af00
+    sha256: a2b5d848531ea64fd9f95327dfd5a588bd227d9577281ec375e822702c6a52d5
     patches:
       - 0001-Make-Framework-creation-optional-through-OSX_FRAMEWO.patch  # [osx]
   # wingetopt submodule is not included in above sources, download by git hash used
