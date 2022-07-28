@@ -28,6 +28,7 @@ outputs:
         - {{ cdt('systemd-devel') }}  # [linux and cdt_name=='cos7']
         - make  # [not win]
         - ninja  # [win]
+        - pkg-config
         - sysroot_linux-64 2.17  # [linux64]
       host:
         - bison  # [linux]
