@@ -8,8 +8,6 @@ package:
 source:
   - url: https://github.com/analogdevicesinc/libiio/archive/v{{ version }}.tar.gz
     sha256: a2b5d848531ea64fd9f95327dfd5a588bd227d9577281ec375e822702c6a52d5
-    patches:
-      - 0001-Make-Framework-creation-optional-through-OSX_FRAMEWO.patch  # [osx]
   # wingetopt submodule is not included in above sources, download by git hash used
   - url: https://github.com/alex85k/wingetopt/archive/76a5d1ab15f684d4c9479a32624d65b3bd1a726b.tar.gz  # [win]
     folder: deps/wingetopt  # [win]
