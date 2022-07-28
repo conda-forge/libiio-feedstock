@@ -6,12 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  - url: https://github.com/analogdevicesinc/libiio/archive/v{{ version }}.tar.gz
-    sha256: a2b5d848531ea64fd9f95327dfd5a588bd227d9577281ec375e822702c6a52d5
-  # wingetopt submodule is not included in above sources, download by git hash used
-  - url: https://github.com/alex85k/wingetopt/archive/76a5d1ab15f684d4c9479a32624d65b3bd1a726b.tar.gz  # [win]
-    folder: deps/wingetopt  # [win]
-    sha256: 482082f678aba30edd3b5008b72e1c6c984bc8fb4c181abf0f8880e893169ff0  # [win]
+  url: https://github.com/analogdevicesinc/libiio/archive/v{{ version }}.tar.gz
+  sha256: a2b5d848531ea64fd9f95327dfd5a588bd227d9577281ec375e822702c6a52d5
 
 build:
   number: {{ build }}
@@ -106,12 +102,13 @@ outputs:
 about:
   home: https://github.com/analogdevicesinc/libiio
   license: LGPL-2.1-or-later AND GPL-3.0-or-later
-  license: LGPL-2.1-or-later AND GPL-3.0-or-later AND ISC AND BSD-2-Clause  # [win]
+  license: LGPL-2.1-or-later AND GPL-3.0-or-later AND Unlicense AND ISC AND BSD-2-Clause  # [win]
   license_family: LGPL
   license_file:
     - COPYING.txt
     - COPYING_GPL.txt
-    - LICENSE_WINGETOPT.txt  # [win]
+    - deps/mdns/LICENSE  # [win]
+    - deps/wingetopt/LICENSE  # [win]
   summary: Library for interfacing with Linux IIO devices
   description: |
     libiio is used to interface to the Linux Industrial Input/Output (IIO) Subsystem.
