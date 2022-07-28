@@ -48,6 +48,7 @@ if [[ $target_platform == linux* ]] ; then
 else
     cmake_config_args+=(
         -DHAVE_DNS_SD=ON
+        -DOSX_FRAMEWORK=OFF
         -DOSX_PACKAGE=OFF
         -DWITH_IIOD=OFF
         -DWITH_LOCAL_BACKEND=OFF
