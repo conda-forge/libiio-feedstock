@@ -3,6 +3,7 @@ About libiio-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libiio-feedstock/blob/main/LICENSE.txt)
 
+
 About libiio
 ------------
 
@@ -26,6 +27,7 @@ Temperature Sensors, Magnetometers, DACs, DDS (Direct Digital Synthesis), PLLs
 transceivers. You can use libiio natively on an embedded Linux target (local mode),
 or use libiio to communicate remotely to that same target from a host Linux,
 Windows or MAC over USB or Ethernet or Serial.
+
 
 About libiio-c
 --------------
@@ -51,6 +53,7 @@ transceivers. You can use libiio natively on an embedded Linux target (local mod
 or use libiio to communicate remotely to that same target from a host Linux,
 Windows or MAC over USB or Ethernet or Serial.
 
+
 About pylibiio
 --------------
 
@@ -74,6 +77,7 @@ Temperature Sensors, Magnetometers, DACs, DDS (Direct Digital Synthesis), PLLs
 transceivers. You can use libiio natively on an embedded Linux target (local mode),
 or use libiio to communicate remotely to that same target from a host Linux,
 Windows or MAC over USB or Ethernet or Serial.
+
 
 About libiio
 ------------
