@@ -17,9 +17,10 @@ cmake_config_args=(
 )
 
 if [[ $target_platform == osx* ]] ; then
-    # set CMAKE_CROSSCOMPILING to short-circuit broken installed library detection
+    # set CMAKE_SYSTEM_NAME so CMAKE_CROSSCOMPILING is true to short-circuit
+    # broken installed library detection
     cmake_config_args+=(
-        -DCMAKE_CROSSCOMPILING=ON
+        -DCMAKE_SYSTEM_NAME="Darwin"
     )
 fi
 

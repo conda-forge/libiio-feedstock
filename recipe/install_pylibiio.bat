@@ -7,11 +7,12 @@ mkdir build
 cd build
 
 :: configure
-:: set CMAKE_INSTALL_FULL_LIBDIR, running from here means it is not set by default
+:: set CMAKE_SYSTEM_NAME so CMAKE_CROSSCOMPILING is true to short-circuit
+:: broken installed library detection
 cmake -G "Ninja" ^
     -DCMAKE_BUILD_TYPE:STRING=Release ^
     -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
-    -DCMAKE_INSTALL_FULL_LIBDIR="%LIBRARY_BIN%" ^
+    -DCMAKE_SYSTEM_NAME="Windows" ^
     -DPython_EXECUTABLE:PATH="%PYTHON%" ^
     -DWITH_DOC=OFF ^
     -DVERSION=%PKG_VERSION% ^
