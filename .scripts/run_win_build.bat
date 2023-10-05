@@ -20,7 +20,7 @@ call activate base
 
 :: Provision the necessary dependencies to build the recipe later
 echo Installing dependencies
-mamba.exe install "python=3.10" pip mamba conda-build conda-libmamba-solver conda-forge-ci-setup=3 -c conda-forge --strict-channel-priority --yes
+mamba.exe install "python=3.10" pip mamba conda-build conda-forge-ci-setup=3 -c conda-forge --strict-channel-priority --yes
 if !errorlevel! neq 0 exit /b !errorlevel!
 
 :: Set basic configuration
@@ -45,7 +45,7 @@ call :end_group
 
 :: Build the recipe
 echo Building recipe
-set "CONDA_SOLVER=libmamba"
+set "CONDA_SOLVER=classic"
 conda.exe build "recipe" -m .ci_support\%CONFIG%.yaml --suppress-variables %EXTRA_CB_OPTIONS%
 if !errorlevel! neq 0 exit /b !errorlevel!
 
