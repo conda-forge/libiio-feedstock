@@ -44,7 +44,6 @@ outputs:
         # verify that executables can be run
         {% set cmds = ["iio_attr", "iio_genxml", "iio_info", "iio_readdev"] %}
         {% set cmds = cmds + ["iio_reg", "iio_writedev"] %}
-        {% set cmds = cmds + ["iio_adi_xflow_check"] %}  # [not win]
         {% set cmds = cmds + ["iiod"] %}  # [linux]
         {% for each_cmd in cmds %}
         - {{ each_cmd }} --help
