@@ -1,0 +1,27 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Thu, 30 Nov 2023 13:31:26 -0500
+Subject: [PATCH] Add #include <libxml/parser.h> for undeclared
+ XML_PARSE_DTDVALID.
+
+libxml2 2.12 fixed some cyclic dependencies in the public headers and
+now more explicit includes are necessary.
+---
+ xml.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/xml.c b/xml.c
+index 33f02610..3eaed92b 100644
+--- a/xml.c
++++ b/xml.c
+@@ -10,6 +10,7 @@
+ #include "iio-private.h"
+ 
+ #include <errno.h>
++#include <libxml/parser.h>
+ #include <libxml/tree.h>
+ #include <string.h>
+ 
+-- 
+2.42.0
+
