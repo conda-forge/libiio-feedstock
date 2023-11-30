@@ -8,6 +8,8 @@ package:
 source:
   url: https://github.com/analogdevicesinc/libiio/archive/v{{ version }}.tar.gz
   sha256: 21972599a3c143ab1f98002ad2b3f28f4aff927fde5f677478311cd4e517730c
+  patches:
+    - 0001-Add-include-libxml-parser.h-for-undeclared-XML_PARSE.patch
 
 build:
   number: {{ build }}
