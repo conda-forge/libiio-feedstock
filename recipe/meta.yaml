@@ -34,10 +34,6 @@ outputs:
         - libusb >=1
         - libxml2
         - zstd
-      run_constrained:
-        # require the MACOSX_DEPLOYMENT_TARGET set in conda_build_config.yaml
-        # (10.11 to be able to compile bonjour support)
-        # (10.12 to have clock_gettime)
     test:
       commands:
         # verify that executables can be run
