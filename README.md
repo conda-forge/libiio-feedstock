@@ -34,7 +34,7 @@ About libiio-c
 
 Home: https://github.com/analogdevicesinc/libiio
 
-Package license: LGPL-2.1-or-later AND GPL-3.0-or-later
+Package license: LGPL-2.1-or-later AND GPL-3.0-or-later AND Unlicense AND ISC AND BSD-2-Clause
 
 Summary: Library for interfacing with Linux IIO devices
 
@@ -84,7 +84,7 @@ About libiio
 
 Home: https://github.com/analogdevicesinc/libiio
 
-Package license: LGPL-2.1-or-later AND GPL-3.0-or-later
+Package license: LGPL-2.1-or-later AND GPL-3.0-or-later AND Unlicense AND ISC AND BSD-2-Clause
 
 Summary: Library for interfacing with Linux IIO devices
 
