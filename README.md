@@ -29,6 +29,31 @@ or use libiio to communicate remotely to that same target from a host Linux,
 Windows or MAC over USB or Ethernet or Serial.
 
 
+About libiio
+------------
+
+Home: https://github.com/analogdevicesinc/libiio
+
+Package license: LGPL-2.1-or-later AND GPL-3.0-or-later AND Unlicense AND ISC AND BSD-2-Clause
+
+Summary: Library for interfacing with Linux IIO devices
+
+Development: https://github.com/analogdevicesinc/libiio
+
+Documentation: https://analogdevicesinc.github.io/libiio/
+
+libiio is used to interface to the Linux Industrial Input/Output (IIO) Subsystem.
+The Linux IIO subsystem is intended to provide support for devices that in some
+sense are analog to digital or digital to analog converters (ADCs, DACs). This
+includes, but is not limited to ADCs, Accelerometers, Gyros, IMUs, Capacitance to
+Digital Converters (CDCs), Pressure Sensors, Color, Light and Proximity Sensors,
+Temperature Sensors, Magnetometers, DACs, DDS (Direct Digital Synthesis), PLLs
+(Phase Locked Loops), Variable/Programmable Gain Amplifiers (VGA, PGA), and RF
+transceivers. You can use libiio natively on an embedded Linux target (local mode),
+or use libiio to communicate remotely to that same target from a host Linux,
+Windows or MAC over USB or Ethernet or Serial.
+
+
 About libiio-c
 --------------
 
@@ -60,31 +85,6 @@ About pylibiio
 Home: https://github.com/analogdevicesinc/libiio
 
 Package license: LGPL-2.1-or-later AND GPL-3.0-or-later
-
-Summary: Library for interfacing with Linux IIO devices
-
-Development: https://github.com/analogdevicesinc/libiio
-
-Documentation: https://analogdevicesinc.github.io/libiio/
-
-libiio is used to interface to the Linux Industrial Input/Output (IIO) Subsystem.
-The Linux IIO subsystem is intended to provide support for devices that in some
-sense are analog to digital or digital to analog converters (ADCs, DACs). This
-includes, but is not limited to ADCs, Accelerometers, Gyros, IMUs, Capacitance to
-Digital Converters (CDCs), Pressure Sensors, Color, Light and Proximity Sensors,
-Temperature Sensors, Magnetometers, DACs, DDS (Direct Digital Synthesis), PLLs
-(Phase Locked Loops), Variable/Programmable Gain Amplifiers (VGA, PGA), and RF
-transceivers. You can use libiio natively on an embedded Linux target (local mode),
-or use libiio to communicate remotely to that same target from a host Linux,
-Windows or MAC over USB or Ethernet or Serial.
-
-
-About libiio
-------------
-
-Home: https://github.com/analogdevicesinc/libiio
-
-Package license: LGPL-2.1-or-later AND GPL-3.0-or-later AND Unlicense AND ISC AND BSD-2-Clause
 
 Summary: Library for interfacing with Linux IIO devices
 
@@ -249,12 +249,12 @@ it is possible to build and upload installable packages to the
 [conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -281,7 +281,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/libiio-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
