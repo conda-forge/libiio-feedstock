@@ -21,7 +21,6 @@ libiio is used to interface to the Linux Industrial Input/Output (IIO) Subsystem
 Packages include:
 
   - `libiio1` contains the library
-  - `libiio-c` contains the library shim for v0 compatibility
   - `libiio-devel` contains the development files for compiling against libiio
   - `pylibiio` contains the Python bindings for libiio
   - `libiio` contains command line tools and depends on all of the above
@@ -55,7 +54,6 @@ libiio is used to interface to the Linux Industrial Input/Output (IIO) Subsystem
 Packages include:
 
   - `libiio1` contains the library
-  - `libiio-c` contains the library shim for v0 compatibility
   - `libiio-devel` contains the development files for compiling against libiio
   - `pylibiio` contains the Python bindings for libiio
   - `libiio` contains command line tools and depends on all of the above
@@ -89,7 +87,6 @@ libiio is used to interface to the Linux Industrial Input/Output (IIO) Subsystem
 Packages include:
 
   - `libiio1` contains the library
-  - `libiio-c` contains the library shim for v0 compatibility
   - `libiio-devel` contains the development files for compiling against libiio
   - `pylibiio` contains the Python bindings for libiio
   - `libiio` contains command line tools and depends on all of the above
@@ -123,7 +120,6 @@ libiio is used to interface to the Linux Industrial Input/Output (IIO) Subsystem
 Packages include:
 
   - `libiio1` contains the library
-  - `libiio-c` contains the library shim for v0 compatibility
   - `libiio-devel` contains the development files for compiling against libiio
   - `pylibiio` contains the Python bindings for libiio
   - `libiio` contains command line tools and depends on all of the above
@@ -157,7 +153,6 @@ libiio is used to interface to the Linux Industrial Input/Output (IIO) Subsystem
 Packages include:
 
   - `libiio1` contains the library
-  - `libiio-c` contains the library shim for v0 compatibility
   - `libiio-devel` contains the development files for compiling against libiio
   - `pylibiio` contains the Python bindings for libiio
   - `libiio` contains command line tools and depends on all of the above

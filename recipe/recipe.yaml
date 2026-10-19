@@ -246,7 +246,6 @@ about:
     Packages include:
 
       - `libiio${{ lib_major_version }}` contains the library
-      - `libiio-c` contains the library shim for v0 compatibility
       - `libiio-devel` contains the development files for compiling against libiio
       - `pylibiio` contains the Python bindings for libiio
       - `libiio` contains command line tools and depends on all of the above
