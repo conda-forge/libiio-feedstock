@@ -1,0 +1,36 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <ryan.volz@gmail.com>
+Date: Wed, 23 Sep 2026 16:16:02 -0400
+Subject: [PATCH] python: Fall back to searching for "ucrtbase" if "c" fails
+
+This fixes an incompatibility with conda's Python on Windows and future
+versions of Python generally, where  `find_library("c")` can return None
+because of naming differences or there not being a single clear C
+stdlib. In this case, "ucrtbase" should be available and have the
+required version of "free" exported which is the only function we need
+from the C stdlib.
+
+Signed-off-by: Ryan Volz <ryan.volz@gmail.com>
+---
+ bindings/python/iio/__init__.py | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/bindings/python/iio/__init__.py b/bindings/python/iio/__init__.py
+index fc06a58e..180b013a 100644
+--- a/bindings/python/iio/__init__.py
++++ b/bindings/python/iio/__init__.py
+@@ -367,7 +367,10 @@ else:
+ if _lib_loc is None:
+     raise OSError(2, "Could not find libiio C library")
+ _lib = _cdll(_lib_loc, use_errno=True, use_last_error=True)
+-_libc = _cdll(find_library("c"))
++_libc_path = find_library("c")
++if _libc_path is None and "Windows" in _system():
++    _libc_path = find_library("ucrtbase")
++_libc = _cdll(_libc_path)
+ 
+ _get_backends_count = _lib.iio_get_builtin_backends_count
+ _get_backends_count.restype = c_uint
+-- 
+2.51.0
+

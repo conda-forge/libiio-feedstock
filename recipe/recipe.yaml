@@ -1,0 +1,272 @@
+schema_version: 1
+
+context:
+  version: "1.0.0"
+  lib_major_version: "${{ (version | split('.'))[0] }}"
+  build: 0
+
+recipe:
+  name: libiio-split
+  version: ${{ version }}
+
+source:
+  url: https://github.com/analogdevicesinc/libiio/archive/v${{ version }}.tar.gz
+  sha256: b4289bf9971f4a193c8c5f7fb40fbd4bd3f33654936b960b9539c7f2b484e44a
+  patches:
+    - 0001-python-Fall-back-to-searching-for-ucrtbase-if-c-fail.patch
+
+build:
+  number: ${{ build }}
+
+outputs:
+  - staging:
+      name: libiio-build
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ stdlib("c") }}
+        - cmake
+        - ninja
+        - pkg-config
+      host:
+        - if: linux
+          then: bison
+        - if: linux
+          then: flex
+        - if: linux
+          then: libaio
+        - libusb >=1
+        - libxml2-devel
+        - zstd
+
+  - package:
+      name: libiio${{ lib_major_version }}
+    inherit:
+      from: libiio-build
+      run_exports: false
+    build:
+      files:
+        include:
+          - if: linux
+            then: lib/libiio.so.${{ lib_major_version }}*
+          - if: osx
+            then: lib/libiio.${{ lib_major_version }}*.dylib
+          - if: win
+            then: Library/bin/libiio${{ lib_major_version }}.dll
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ stdlib("c") }}
+      host:
+        - libusb >=1
+        - libxml2-devel
+        - zstd
+    tests:
+      - package_contents:
+          strict: true
+          files:
+            - if: linux
+              then: lib/libiio.so.${{ lib_major_version }}*
+            - if: osx
+              then: lib/libiio.${{ lib_major_version }}*.dylib
+            - if: win
+              then: Library/bin/libiio${{ lib_major_version }}.dll
+
+  - package:
+      name: libiio-devel
+    inherit:
+      from: libiio-build
+      run_exports: false
+    build:
+      files:
+        include:
+          - ${{ "Library/" if win }}include/**
+          - ${{ "Library/" if win }}lib/**
+        exclude:
+          - if: linux
+            then: lib/libiio.so.*
+          - if: osx
+            then: lib/libiio.*.dylib
+          - if: linux
+            then: lib/udev/**
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ stdlib("c") }}
+      run:
+        - ${{ pin_subpackage("libiio" + lib_major_version, exact=True) }}
+      run_exports:
+        - ${{ pin_subpackage("libiio" + lib_major_version, upper_bound=None) }}
+    tests:
+      - package_contents:
+          strict: true
+          include:
+            - iio/iio.h
+            - iio/iio-backend.h
+            - iio/iio-debug.h
+            - iio/iio-lock.h
+            - iio/iiod-client.h
+          lib:
+            - if: unix
+              then: iio
+          files:
+            - if: win
+              then: Library/lib/libiio${{ lib_major_version }}.lib
+            - ${{ "Library/" if win }}lib/pkgconfig/libiio.pc
+
+  - package:
+      name: pylibiio
+    build:
+      string: py_${{ build }}
+      noarch: python
+      script: python -m pip install -vv bindings/python
+    requirements:
+      build:
+        # cross-compilation dependencies
+        - if: build_platform != target_platform
+          then: python ${{ python_min }}.*
+        - if: build_platform != target_platform
+          then: cross-python_${{ target_platform }}
+      host:
+        - ${{ pin_subpackage("libiio-devel", exact=True) }}
+        - pip
+        - python ${{ python_min }}.*
+        - setuptools
+      run:
+        - libiio${{ lib_major_version }} ${{ version }}.*
+        # need libiio-devel dependency because Python bindings search
+        # for the library using the unversioned name
+        - libiio-devel ${{ version }}.*
+        - python >=3.10
+    tests:
+      - python:
+          imports:
+            - iio
+          pip_check: false
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
+
+  - package:
+      name: libiio
+    inherit:
+      from: libiio-build
+      run_exports: false
+    build:
+      files:
+        include:
+          - ${{ "Library/" if win }}bin/**
+          - if: linux
+            then: lib/udev/**
+        exclude:
+          - if: win
+            then: Library/bin/libiio.dll
+    requirements:
+      build:
+        - ${{ compiler("c") }}
+        - ${{ stdlib("c") }}
+      host:
+        - if: linux
+          then: libaio
+        - ${{ pin_subpackage("libiio" + lib_major_version, exact=True) }}
+        # only iiod (Linux-only) ends up linking against zstd
+        - if: linux
+          then: zstd
+      run:
+        - ${{ pin_subpackage("libiio" + lib_major_version, exact=True) }}
+        # recipes still use this output as a host dependency, so depend on dev
+        - ${{ pin_subpackage("libiio-devel", exact=True) }}
+        - ${{ pin_subpackage("pylibiio", exact=True) }}
+      run_exports:
+        - ${{ pin_subpackage("libiio" + lib_major_version, upper_bound=None) }}
+    tests:
+      - package_contents:
+          strict: true
+          bin:
+            - iio_attr
+            - iio_event
+            - iio_genxml
+            - iio_info
+            - iio_ping
+            - iio_reg
+            - iio_rwdev
+            - if: unix
+              then: iio_stresstest
+            - if: linux
+              then: iiod
+          files:
+            - if: linux
+              then: bin/.libiio-post-link.sh
+            - if: linux
+              then: lib/udev/rules.d/90-libiio.rules
+      - python:
+          imports:
+            - iio
+          pip_check: false
+          python_version:
+            - ${{ python_min }}.*
+            - "*"
+      - script:
+          - iio_attr --help
+          - iio_event --help
+          - iio_genxml --help
+          - iio_info --help
+          - iio_ping --help
+          - iio_reg --help
+          - iio_rwdev --help
+          - if: unix
+            then: iio_stresstest --help
+          - if: linux
+            then: iiod --help
+
+about:
+  license: LGPL-2.1-or-later AND GPL-3.0-or-later
+  license_file:
+    - COPYING.txt
+    - COPYING_GPL.txt
+    - if: linux
+      then: deps/libini/LICENSE.txt
+    - if: win
+      then: deps/mdns/LICENSE
+    - if: win
+      then: deps/wingetopt/LICENSE
+  summary: Library for interfacing with Linux IIO devices
+  description: >
+    libiio is used to interface to the Linux Industrial Input/Output (IIO) Subsystem.
+    The Linux IIO subsystem is intended to provide support for devices that in some
+    sense are analog to digital or digital to analog converters (ADCs, DACs). This
+    includes, but is not limited to ADCs, Accelerometers, Gyros, IMUs, Capacitance to
+    Digital Converters (CDCs), Pressure Sensors, Color, Light and Proximity Sensors,
+    Temperature Sensors, Magnetometers, DACs, DDS (Direct Digital Synthesis), PLLs
+    (Phase Locked Loops), Variable/Programmable Gain Amplifiers (VGA, PGA), and RF
+    transceivers. You can use libiio natively on an embedded Linux target (local mode),
+    or use libiio to communicate remotely to that same target from a host Linux,
+    Windows or MAC over USB or Ethernet or Serial.
+
+    Packages include:
+
+      - `libiio${{ lib_major_version }}` contains the library
+      - `libiio-c` contains the library shim for v0 compatibility
+      - `libiio-devel` contains the development files for compiling against libiio
+      - `pylibiio` contains the Python bindings for libiio
+      - `libiio` contains command line tools and depends on all of the above
+
+    For Linux users of `libiio`, you will likely want to link the provided udev rule into your system installation in order for the hardware to have the correct permissions:
+
+        sudo ln -s $CONDA_PREFIX/lib/udev/rules.d/90-libiio.rules /etc/udev/rules.d/
+        sudo udevadm control --reload
+        sudo udevadm trigger
+
+    Then, make sure your user account belongs to the plugdev group in order to be able to access your device:
+
+        sudo usermod -a -G plugdev <user>
+
+    You may have to restart for this change to take effect.
+  homepage: https://github.com/analogdevicesinc/libiio
+  repository: https://github.com/analogdevicesinc/libiio
+  documentation: https://analogdevicesinc.github.io/libiio/
+
+extra:
+  feedstock-name: libiio
+  recipe-maintainers:
+    - ryanvolz
