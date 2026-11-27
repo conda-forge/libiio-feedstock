@@ -1,5 +1,7 @@
 c_compiler:
-- vs2022
+- vs
+c_compiler_version:
+- '2022'
 c_stdlib:
 - vs
 channel_sources:
@@ -13,4 +15,4 @@ python_min:
 target_platform:
 - win-64
 zstd:
-- '1.5'
+- '1.6'
