@@ -1,3 +1,5 @@
+DOCKER_PLATFORM:
+- linux/amd64
 c_compiler:
 - gcc
 c_compiler_version:
@@ -19,4 +21,4 @@ python_min:
 target_platform:
 - linux-ppc64le
 zstd:
-- '1.5'
+- '1.6'
